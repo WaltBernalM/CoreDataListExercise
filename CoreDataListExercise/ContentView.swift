@@ -80,6 +80,12 @@ struct ContentView: View {
     }
     
     func saveToDatabase() {
+        guard viewContext.hasChanges else { return }
+        do {
+            try viewContext.save()
+        } catch (let error) {
+            print(error.localizedDescription)
+        }
     }
     
 }
